@@ -76,7 +76,17 @@ class UserController extends Controller
             'password'=> 'sometimes|min:6',
             'type'=> 'required',
         ]);
-        $user->update($request->all());
+
+        $user->update([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'type' => $request['type'],
+            'bio' => $request['bio'],
+            'photo' => $request['photo'],
+        ]);
+
+        return ['message' => 'User updated successfully'];
     }
 
     /**
