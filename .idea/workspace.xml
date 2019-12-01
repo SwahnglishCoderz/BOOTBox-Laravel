@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9279ec70-bac2-421f-b7c4-ed75f46a6aba" name="Default" comment="">
+    <list default="true" id="9279ec70-bac2-421f-b7c4-ed75f46a6aba" name="Default" comment="added delete user&#10;&#10;#comments:&#10;added delete user functionality&#10;sending ajax request to server to delete user">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Users.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Users.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,8 +32,8 @@
       <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/UserController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="78" column="24" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="24" />
+            <state relative-caret-position="531">
+              <caret line="69" column="72" selection-start-line="69" selection-start-column="72" selection-end-line="69" selection-end-column="72" />
             </state>
           </provider>
         </entry>
@@ -46,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Users.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Users.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/js/components/Users.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="189" column="26" lean-forward="true" selection-start-line="181" selection-start-column="20" selection-end-line="189" selection-end-column="26" />
+            <state relative-caret-position="272">
+              <caret line="172" column="50" selection-start-line="172" selection-start-column="24" selection-end-line="172" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -82,11 +83,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="77" selection-start-line="77" selection-end-line="77" />
+            <state relative-caret-position="325">
+              <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
               <folding>
                 <element signature="e#277#375#0" expanded="true" />
                 <element signature="e#605#640#0" expanded="true" />
@@ -153,9 +154,9 @@
         <option value="$PROJECT_DIR$/app/User.php" />
         <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/master.blade.php" />
-        <option value="$PROJECT_DIR$/resources/js/app.js" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" />
         <option value="$PROJECT_DIR$/resources/js/components/Users.vue" />
+        <option value="$PROJECT_DIR$/resources/js/app.js" />
       </list>
     </option>
   </component>
@@ -377,7 +378,7 @@
       <option name="presentableId" value="Default" />
       <updated>1575090669982</updated>
       <workItem from="1575090673571" duration="20853000" />
-      <workItem from="1575207560191" duration="10388000" />
+      <workItem from="1575207560191" duration="13938000" />
     </task>
     <task id="LOCAL-00001" summary="Navigation changes:&#10;&#10;#Comments:&#10;Cleaned the navbar&#10;Added icons and new items on navigation&#10;Cleaned the contents">
       <created>1575095672747</created>
@@ -519,11 +520,18 @@
       <option name="project" value="LOCAL" />
       <updated>1575227318403</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="added delete user&#10;&#10;#comments:&#10;added delete user functionality&#10;sending ajax request to server to delete user">
+      <created>1575228656342</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1575228656342</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31241000" />
+    <option name="totallyTimeSpent" value="34791000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="676" y="0" width="697" height="745" extended-state="0" />
@@ -535,7 +543,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32789558" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3294702" />
       <window_info id="npm" order="2" sideWeight="0.50121653" side_tool="true" weight="0.24962178" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.33115825" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.33115825" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49878347" weight="0.51805335" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
@@ -627,7 +635,8 @@
     <MESSAGE value="added sweet alert toaster and hide modal" />
     <MESSAGE value="populated table using events:&#10;&#10;#comments:&#10;using custom events to fire events&#10;using on to fire events&#10;fire an event globally by initiating a new vue instance" />
     <MESSAGE value="fix: modal closes and fails to show errors" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: modal closes and fails to show errors" />
+    <MESSAGE value="added delete user&#10;&#10;#comments:&#10;added delete user functionality&#10;sending ajax request to server to delete user" />
+    <option name="LAST_COMMIT_MESSAGE" value="added delete user&#10;&#10;#comments:&#10;added delete user functionality&#10;sending ajax request to server to delete user" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/master.blade.php">
@@ -841,28 +850,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="77" selection-start-line="77" selection-end-line="77" />
-          <folding>
-            <element signature="e#277#375#0" expanded="true" />
-            <element signature="e#605#640#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="78" column="24" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="24" />
+        <state relative-caret-position="531">
+          <caret line="69" column="72" selection-start-line="69" selection-start-column="72" selection-end-line="69" selection-end-column="72" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/components/Users.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="189" column="26" lean-forward="true" selection-start-line="181" selection-start-column="20" selection-end-line="189" selection-end-column="26" />
+        <state relative-caret-position="272">
+          <caret line="172" column="50" selection-start-line="172" selection-start-column="24" selection-end-line="172" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+          <folding>
+            <element signature="e#277#375#0" expanded="true" />
+            <element signature="e#605#640#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

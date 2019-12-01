@@ -7,7 +7,7 @@
                         <h3 class="card-title">All Users</h3>
 
                         <div class="card-tools">
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#addNew">Add New <i class="fas fa-user-plus"></i></button>
+                            <button class="btn btn-primary" @click="newModal">Add New <i class="fas fa-user-plus"></i></button>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -31,7 +31,7 @@
                                 <td>{{user.type | upText}}</td>
                                 <td>{{user.created_at | myDate}}</td>
                                 <td>
-                                    <a href="#">
+                                    <a href="#" @click="editModal(user)">
                                         <i class="fa fa-edit orange"></i>
                                     </a>
                                     /
@@ -55,12 +55,13 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add New</h5>
+                        <h5 v-show="!editMode" class="modal-title">Add New</h5>
+                        <h5 v-show="editMode" class="modal-title">Update User's Info</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form @submit.prevent="createUser">
+                    <form @submit.prevent="editMode ? updateUser() : createUser()">
                         <div class="modal-body">
                             <!--input edit form -->
 
@@ -115,7 +116,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-dange" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Create</button>
+                            <button v-show="!editMode" type="submit" class="btn btn-primary">Create</button>
+                            <button v-show="editMode" type="submit" class="btn btn-warning">Update</button>
                         </div>
                     </form>
                 </div>
@@ -129,8 +131,10 @@
     export default {
         data(){
             return {
+                editMode:true,
                 users: {},
                 form : new Form({
+                    id:'',
                     name: '',
                     email: '',
                     password: '',
@@ -158,7 +162,27 @@
                         this.$Progress.finish();
                     })
                     .catch( () => {
+                        this.$Progress.fail();
+                    });
+            },
+            updateUser(){
+                this.$Progress.start();
+                this.form.put('api/user/'+this.form.id)
+                    .then(() => {
+                        //fire an event
+                        Fire.$emit('UserUpdated');
 
+                        $('#addNew').modal('hide');
+
+                        toast.fire({
+                            icon: 'success',
+                            title: 'User updated successfully'
+                        });
+
+                        this.$Progress.finish();
+                    })
+                    .catch( () => {
+                        this.$Progress.fail();
                     });
             },
             loadUsers(){
@@ -181,7 +205,7 @@
                             .then(() => {
                                 swal.fire(
                                     'Deleted!',
-                                    'Your file has been deleted.',
+                                    'User has been deleted.',
                                     'success'
                                 );
                                 Fire.$emit('UserDeleted');
@@ -193,6 +217,17 @@
 
                 });
 
+            },
+            editModal(user){
+                this.editMode = true;
+                this.form.reset();
+                $('#addNew').modal('show');
+                this.form.fill(user);
+            },
+            newModal(){
+                this.editMode = false;
+                this.form.reset();
+                $('#addNew').modal('show')
             }
         },
         created() {
@@ -201,6 +236,9 @@
                 this.loadUsers();
             });
             Fire.$on('UserDeleted', () => {
+                this.loadUsers();
+            });
+            Fire.$on('UserUpdated', () => {
                 this.loadUsers();
             });
             // setInterval(() => this.loadUsers(),3000);
