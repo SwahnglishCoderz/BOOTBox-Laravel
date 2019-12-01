@@ -2065,7 +2065,9 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     createUser: function createUser() {
       this.$Progress.start();
-      this.form.post('api/user');
+      this.form.post('api/user'); //fire an event
+
+      Fire.$emit('userCreated');
       $('#addNew').modal('hide');
       toast.fire({
         icon: 'success',
@@ -2086,9 +2088,9 @@ __webpack_require__.r(__webpack_exports__);
     var _this2 = this;
 
     this.loadUsers();
-    setInterval(function () {
-      return _this2.loadUsers();
-    }, 3000);
+    Fire.$on('userCreated', function () {
+      _this2.loadUsers();
+    }); // setInterval(() => this.loadUsers(),3000);
   }
 });
 
@@ -74782,6 +74784,7 @@ Vue.filter('upText', function (text) {
 Vue.filter('myDate', function (date) {
   return moment__WEBPACK_IMPORTED_MODULE_1___default()(date).format('MMMM Do YYYY');
 });
+window.Fire = new Vue();
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
