@@ -13,7 +13,8 @@ import {
     AlertError,
     AlertErrors,
     AlertSuccess
-} from 'vform'
+} from 'vform';
+import moment from 'moment';
 
 window.Form = Form;
 Vue.component(HasError.name, HasError);
@@ -36,6 +37,16 @@ const router  = new VueRouter({
     linkExactActiveClass: "active",
     routes
 });
+
+//register a global filter
+Vue.filter('upText', function(text){
+    return text.charAt(0).toUpperCase() + text.slice(1);
+});
+
+Vue.filter('myDate',function (date) {
+    return moment(date).format('MMMM Do YYYY');
+});
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
