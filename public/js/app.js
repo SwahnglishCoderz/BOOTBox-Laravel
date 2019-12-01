@@ -2064,32 +2064,36 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     createUser: function createUser() {
-      this.$Progress.start();
-      this.form.post('api/user'); //fire an event
+      var _this = this;
 
-      Fire.$emit('userCreated');
-      $('#addNew').modal('hide');
-      toast.fire({
-        icon: 'success',
-        title: 'User created successfully'
-      });
-      this.$Progress.finish();
+      this.$Progress.start();
+      this.form.post('api/user').then(function () {
+        //fire an event
+        Fire.$emit('userCreated');
+        $('#addNew').modal('hide');
+        toast.fire({
+          icon: 'success',
+          title: 'User created successfully'
+        });
+
+        _this.$Progress.finish();
+      })["catch"](function () {});
     },
     loadUsers: function loadUsers() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get("api/user").then(function (_ref) {
         var data = _ref.data;
-        _this.users = data.data;
+        _this2.users = data.data;
       });
     }
   },
   created: function created() {
-    var _this2 = this;
+    var _this3 = this;
 
     this.loadUsers();
     Fire.$on('userCreated', function () {
-      _this2.loadUsers();
+      _this3.loadUsers();
     }); // setInterval(() => this.loadUsers(),3000);
   }
 });
