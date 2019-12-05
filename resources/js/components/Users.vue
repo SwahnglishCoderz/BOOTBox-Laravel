@@ -1,8 +1,9 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <div class="card">
+            <div class="col-md-12" >
+
+                <div v-if="$gate.isAdmin()||$gate.isAuthor()" class="card">
                     <div class="card-header">
                         <h3 class="card-title">All Users</h3>
 
@@ -46,12 +47,15 @@
                     </div>
                     <!-- /.card-body -->
                 </div>
+                <div v-if="!($gate.isAdmin()||$gate.isAuthor())">
+                    <not-found></not-found>
+                </div>
                 <!-- /.card -->
             </div>
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" v-if="$gate.isAdmin()||$gate.isAuthor()" id="addNew" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -186,8 +190,11 @@
                     });
             },
             loadUsers(){
-                axios.get("api/user")
-                    .then(({ data }) => {this.users = data.data})
+                if (this.$gate.isAdmin() || this.$gate.isAuthor()){
+                    axios.get("api/user")
+                        .then(({ data }) => {this.users = data.data})
+                }
+
             },
             deleteUser(id){
                 swal.fire({

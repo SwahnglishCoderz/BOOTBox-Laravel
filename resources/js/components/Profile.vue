@@ -178,6 +178,7 @@
                         this.profilephoto = "img/profile/" + this.form.photo;
                     })
             },
+
             updateUser(){
                 this.$Progress.start();
                 this.form.put('api/profile')

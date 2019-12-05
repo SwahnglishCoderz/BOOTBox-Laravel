@@ -25,6 +25,10 @@ Vue.component(AlertSuccess.name, AlertSuccess);
 import VueRouter from 'vue-router';
 import VueProgressBar from 'vue-progressbar'
 import swal from 'sweetalert2';
+import Gate from "./gate";
+
+//protyping
+Vue.prototype.$gate = new Gate(window.user);
 
 window.swal = swal;
 
@@ -55,9 +59,10 @@ Vue.use(VueRouter);
 Vue.use(VueProgressBar, progressbar_options);
 
 let routes = [
-    {path: '/dashboard', component:require('./components/Dashboard.vue').default},
+    {path: '/home', component:require('./components/Dashboard.vue').default},
     {path: '/profile', component:require('./components/Profile.vue').default},
     {path: '/users', component:require('./components/Users.vue').default},
+    {path: '*', component:require('./components/NotFound.vue').default},
 ];
 
 const router  = new VueRouter({
@@ -91,6 +96,7 @@ window.Fire = new Vue();
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
+Vue.component('not-found', require("./components/NotFound.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
