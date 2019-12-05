@@ -25,7 +25,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="user in users" :key="user.id">
+                            <tr v-for="user in users.data" :key="user.id">
                                 <td>{{user.id}}</td>
                                 <td>{{user.name}}</td>
                                 <td>{{user.email}}</td>
@@ -46,6 +46,9 @@
                         </table>
                     </div>
                     <!-- /.card-body -->
+                    <div class="card-footer">
+                        <pagination :data="users" @pagination-change-page="getResults"></pagination>
+                    </div>
                 </div>
                 <div v-if="!($gate.isAdmin()||$gate.isAuthor())">
                     <not-found></not-found>
@@ -149,6 +152,12 @@
              }
         },
         methods: {
+            getResults(page=1){
+                axios.get('api/user?page='+page)
+                    .then(response => {
+                        this.users = response.data;
+                    })
+            },
             createUser(){
                 this.$Progress.start();
                 this.form.post('api/user')
@@ -192,7 +201,7 @@
             loadUsers(){
                 if (this.$gate.isAdmin() || this.$gate.isAuthor()){
                     axios.get("api/user")
-                        .then(({ data }) => {this.users = data.data})
+                        .then(({ data }) => {this.users = data})
                 }
 
             },
