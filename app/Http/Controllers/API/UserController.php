@@ -55,6 +55,67 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function profile()
+    {
+        return auth('api')->user();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    protected function getFileExtension($photo){
+        $extension = explode('/',
+            explode(':',
+                substr($photo,0,
+                    strpos($photo,';')))[1])[1];
+
+        return $extension;
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $photo = $request->photo;
+
+        $user = auth('api')->user();
+
+        $this->validate($request,[
+            'name'=> 'required|string|max:191',
+            'email'=> 'required|string|email|max:191|unique:users,email,'.$user->id,
+            'password'=> 'sometimes|min:6',
+            'type'=> 'required',
+        ]);
+
+        if ($user->photo != $photo){
+            //upload photo to server.
+            $extension = $this->getFileExtension($photo);
+            $name = time().'.'.$extension;
+            \Image::make($photo)->save(public_path('img/profile/').$name);
+
+            $request->merge(['photo' => $name]);
+
+            $userPhoto = public_path('img/profile/').$user->photo;
+            if (file_exists($userPhoto)){
+                @unlink($userPhoto);
+            }
+        }
+
+        if (!empty($request->password)){
+            $request->merge(['password' => Hash::make($request->password)]);
+        }
+
+        $user->update($request->all());
+//        return ['message' => 'Success'];
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
         //
