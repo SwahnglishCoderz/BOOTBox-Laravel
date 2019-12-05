@@ -77154,7 +77154,10 @@ var app = new Vue({
   methods: {
     searchIt: function searchIt() {
       Fire.$emit('Searching');
-    }
+    },
+    searchInASec: _.debounce(function () {
+      Fire.$emit('Searching');
+    }, 1000)
   }
 });
 
