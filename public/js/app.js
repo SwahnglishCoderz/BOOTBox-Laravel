@@ -2391,6 +2391,13 @@ __webpack_require__.r(__webpack_exports__);
     });
     Fire.$on('UserUpdated', function () {
       _this6.loadUsers();
+    });
+    Fire.$on('Searching', function () {
+      var query = _this6.$parent.search;
+      axios.get("api/findUser?q=" + query).then(function (_ref2) {
+        var data = _ref2.data;
+        _this6.users = data;
+      })["catch"](function () {});
     }); // setInterval(() => this.loadUsers(),3000);
   }
 });
@@ -77140,7 +77147,15 @@ Vue.component('pagination', __webpack_require__(/*! laravel-vue-pagination */ ".
 
 var app = new Vue({
   el: '#app',
-  router: router
+  router: router,
+  data: {
+    search: ''
+  },
+  methods: {
+    searchIt: function searchIt() {
+      Fire.$emit('Searching');
+    }
+  }
 });
 
 /***/ }),

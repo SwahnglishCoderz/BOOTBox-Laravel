@@ -257,6 +257,14 @@
             Fire.$on('UserUpdated', () => {
                 this.loadUsers();
             });
+            Fire.$on('Searching', () => {
+                let query = this.$parent.search;
+                axios.get("api/findUser?q="+query)
+                    .then(({ data }) => {this.users = data})
+                    .catch(() => {
+
+                    })
+            });
             // setInterval(() => this.loadUsers(),3000);
         }
     }
