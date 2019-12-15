@@ -51,7 +51,7 @@ const progressbar_options = {
     failedColor: 'red',
     thickness: '5px',
     autoRevert: true,
-    location: 'left',
+    location: 'top',
     inverse: false
 };
 

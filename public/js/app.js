@@ -61151,71 +61151,76 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "form-group" },
-                    [
-                      _c("label", [_vm._v("User Type")]),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.type,
-                              expression: "form.type"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          class: { "is-invalid": _vm.form.errors.has("type") },
-                          attrs: { name: "type" },
-                          on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.$set(
-                                _vm.form,
-                                "type",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              )
-                            }
-                          }
-                        },
+                  _vm.$gate.isAdmin()
+                    ? _c(
+                        "div",
+                        { staticClass: "form-group" },
                         [
-                          _c("option", { attrs: { value: "" } }, [
-                            _vm._v("Select User Type")
-                          ]),
+                          _c("label", [_vm._v("User Type")]),
                           _vm._v(" "),
-                          _c("option", { attrs: { value: "user" } }, [
-                            _vm._v("Standard User")
-                          ]),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.type,
+                                  expression: "form.type"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              class: {
+                                "is-invalid": _vm.form.errors.has("type")
+                              },
+                              attrs: { name: "type" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.form,
+                                    "type",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Select User Type")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "user" } }, [
+                                _vm._v("Standard User")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "admin" } }, [
+                                _vm._v("Administrator")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "author" } }, [
+                                _vm._v("Author")
+                              ])
+                            ]
+                          ),
                           _vm._v(" "),
-                          _c("option", { attrs: { value: "admin" } }, [
-                            _vm._v("Administrator")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "author" } }, [
-                            _vm._v("Author")
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("has-error", {
-                        attrs: { form: _vm.form, field: "type" }
-                      })
-                    ],
-                    1
-                  ),
+                          _c("has-error", {
+                            attrs: { form: _vm.form, field: "type" }
+                          })
+                        ],
+                        1
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -77094,7 +77099,7 @@ var progressbar_options = {
   failedColor: 'red',
   thickness: '5px',
   autoRevert: true,
-  location: 'left',
+  location: 'top',
   inverse: false
 };
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
@@ -77571,8 +77576,8 @@ function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\xampp\htdocs\larastart\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\xampp\htdocs\larastart\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /media/blutrix/Pool/xampp/htdocs/larastart/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /media/blutrix/Pool/xampp/htdocs/larastart/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

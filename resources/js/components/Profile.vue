@@ -84,7 +84,7 @@
                                     <has-error :form="form" field="email"></has-error>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group" v-if="$gate.isAdmin()">
                                     <label>User Type</label>
                                     <select v-model="form.type" name="type"
                                             class="form-control" :class="{ 'is-invalid': form.errors.has('type') }">
