@@ -153,14 +153,14 @@
         },
         methods: {
             getResults(page=1){
-                axios.get('api/user?page='+page)
+                axios.get('api/users?page='+page)
                     .then(response => {
                         this.users = response.data;
                     })
             },
             createUser(){
                 this.$Progress.start();
-                this.form.post('api/user')
+                this.form.post('api/users')
                     .then(() => {
                         //fire an event
                         Fire.$emit('UserCreated');
@@ -180,7 +180,7 @@
             },
             updateUser(){
                 this.$Progress.start();
-                this.form.put('api/user/'+this.form.id)
+                this.form.put('api/users/'+this.form.id)
                     .then(() => {
                         //fire an event
                         Fire.$emit('UserUpdated');
@@ -200,7 +200,7 @@
             },
             loadUsers(){
                 if (this.$gate.isAdmin() || this.$gate.isAuthor()){
-                    axios.get("api/user")
+                    axios.get("api/users")
                         .then(({ data }) => {this.users = data})
                 }
 
@@ -217,7 +217,7 @@
                 }).then((result) => {
                     if (result.value)
                     {
-                        this.form.delete('api/user/'+id)
+                        this.form.delete('api/users/'+id)
                             .then(() => {
                                 swal.fire(
                                     'Deleted!',

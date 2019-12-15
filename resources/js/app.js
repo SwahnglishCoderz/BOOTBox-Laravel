@@ -25,7 +25,8 @@ Vue.component(AlertSuccess.name, AlertSuccess);
 import VueRouter from 'vue-router';
 import VueProgressBar from 'vue-progressbar'
 import swal from 'sweetalert2';
-import Gate from "./gate";
+import router from './router';
+import Gate from "../../modules/User/Vue/gate";
 
 //protyping
 Vue.prototype.$gate = new Gate(window.user);
@@ -57,20 +58,6 @@ const progressbar_options = {
 
 Vue.use(VueRouter);
 Vue.use(VueProgressBar, progressbar_options);
-
-let routes = [
-    {path: '/home', component:require('./components/Dashboard.vue').default},
-    {path: '/profile', component:require('./components/Profile.vue').default},
-    {path: '/users', component:require('./components/Users.vue').default},
-    {path: '*', component:require('./components/NotFound.vue').default},
-];
-
-const router  = new VueRouter({
-    mode: 'history',
-    linkActiveClass: "active",
-    linkExactActiveClass: "active",
-    routes
-});
 
 //register a global filter
 Vue.filter('upText', function(text){
@@ -108,7 +95,10 @@ const app = new Vue({
     el: '#app',
     router,
     data: {
-        search:''
+        search:'',
+        userimage:'./img/profile.png',
+        username:'User',
+        usertype:'user',
     },
     methods:{
         searchIt(){
@@ -116,6 +106,16 @@ const app = new Vue({
         },
         searchInASec:_.debounce(() => {
             Fire.$emit('Searching');
-        },1000)
+        },1000),
+        userUpdate(){
+            if (window.user && window.user.photo !== ''){
+                this.userimage = './img/profile/'+window.user.photo;
+                this.username = window.user.name;
+                this.usertype = window.user.type;
+            }
+        }
+    },
+    created(){
+        this.userUpdate()
     }
 });

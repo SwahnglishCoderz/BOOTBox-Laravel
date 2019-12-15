@@ -68,57 +68,59 @@
                             <div class="tab-pane" id="settings">
                                 <!--input edit form -->
 
-                                <div class="form-group">
-                                    <label>Full Name</label>
-                                    <input v-model="form.name" type="text" name="name"
-                                           placeholder="Full Name"
-                                           class="form-control" :class="{ 'is-invalid': form.errors.has('name') }">
-                                    <has-error :form="form" field="name"></has-error>
-                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label>Full Name</label>
+                                        <input v-model="form.name" type="text" name="name"
+                                               placeholder="Full Name"
+                                               class="form-control" :class="{ 'is-invalid': form.errors.has('name') }">
+                                        <has-error :form="form" field="name"></has-error>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label>Email Address</label>
-                                    <input v-model="form.email" type="email" name="email"
-                                           placeholder="Email Address"
-                                           class="form-control" :class="{ 'is-invalid': form.errors.has('email') }">
-                                    <has-error :form="form" field="email"></has-error>
-                                </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Email Address</label>
+                                        <input v-model="form.email" type="email" name="email"
+                                               placeholder="Email Address"
+                                               class="form-control" :class="{ 'is-invalid': form.errors.has('email') }">
+                                        <has-error :form="form" field="email"></has-error>
+                                    </div>
 
-                                <div class="form-group" v-if="$gate.isAdmin()">
-                                    <label>User Type</label>
-                                    <select v-model="form.type" name="type"
-                                            class="form-control" :class="{ 'is-invalid': form.errors.has('type') }">
-                                        <option value="">Select User Type</option>
-                                        <option value="user">Standard User</option>
-                                        <option value="admin">Administrator</option>
-                                        <option value="author">Author</option>
-                                    </select>
-                                    <has-error :form="form" field="type"></has-error>
-                                </div>
+                                    <div class="form-group col-md-6" v-if="$gate.isAdmin()">
+                                        <label>User Type</label>
+                                        <select v-model="form.type" name="type"
+                                                class="form-control" :class="{ 'is-invalid': form.errors.has('type') }">
+                                            <option value="">Select User Type</option>
+                                            <option value="user">Standard User</option>
+                                            <option value="admin">Administrator</option>
+                                            <option value="author">Author</option>
+                                        </select>
+                                        <has-error :form="form" field="type"></has-error>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label>Bio</label>
-                                <textarea v-model="form.bio" name="bio"
-                                          placeholder="bio"
-                                          class="form-control" :class="{ 'is-invalid': form.errors.has('bio') }"></textarea>
-                                    <has-error :form="form" field="bio"></has-error>
-                                </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Bio</label>
+                                        <textarea v-model="form.bio" name="bio"
+                                                  placeholder="bio"
+                                                  class="form-control" :class="{ 'is-invalid': form.errors.has('bio') }"></textarea>
+                                        <has-error :form="form" field="bio"></has-error>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label>Photo</label>
-                                    <input type="hidden" name="prev_photo" value="" />
-                                    <input  type="file" name="photo"
-                                            @change="updateProfilePhoto"
-                                           class="form-control" :class="{ 'is-invalid': form.errors.has('photo') }">
-                                    <has-error :form="form" field="photo"></has-error>
-                                </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Photo</label>
+                                        <input type="hidden" name="prev_photo" value="" />
+                                        <input  type="file" name="photo"
+                                                @change="updateProfilePhoto"
+                                                class="form-control" :class="{ 'is-invalid': form.errors.has('photo') }">
+                                        <has-error :form="form" field="photo"></has-error>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label>Password (Leave empty if you aren't changing it)</label>
-                                    <input v-model="form.password" type="text" name="password"
-                                           placeholder="Password"
-                                           class="form-control" :class="{ 'is-invalid': form.errors.has('password') }">
-                                    <has-error :form="form" field="password"></has-error>
+                                    <div class="form-group col-md-6">
+                                        <label>Password (Leave empty if you aren't changing it)</label>
+                                        <input v-model="form.password" type="text" name="password"
+                                               placeholder="Password"
+                                               class="form-control" :class="{ 'is-invalid': form.errors.has('password') }">
+                                        <has-error :form="form" field="password"></has-error>
+                                    </div>
                                 </div>
 
                                 <button type="submit" @click.prevent="updateUser" class="btn btn-warning">Update</button>
@@ -175,7 +177,9 @@
                 axios.get("api/profile")
                     .then(({ data }) => {this.form.fill(data)})
                     .then(() => {
-                        this.profilephoto = "img/profile/" + this.form.photo;
+                        this.$parent.userimage = this.profilephoto = "img/profile/" + this.form.photo;
+                        this.$parent.username = this.form.name;
+                        this.$parent.usertype = this.form.type;
                     })
             },
 
